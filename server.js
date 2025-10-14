@@ -18,7 +18,7 @@ const db = require('./_helpers/db');
     app.use(bodyParser.json({ limit: '50mb', type: 'application/json' }));
 
     const corsOptions = {
-      origin: ['https://dsol.vercel.app', 'http://localhost:4200', 'https://app.wesolai.com'],
+      origin: ['https://dsol.vercel.app', 'http://localhost:4200', 'https://app.wesolai.com', 'https://app.logicai.es'],
       credentials: true
     };
     app.use(cors(corsOptions));
