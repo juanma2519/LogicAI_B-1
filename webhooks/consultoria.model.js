@@ -11,6 +11,7 @@ function model(sequelize) {
             autoIncrement: true
         },
 
+        
         // claves de negocio
         usuario_id: { type: DataTypes.INTEGER, allowNull: false },
         dominio: { type: DataTypes.STRING(255), allowNull: false },
