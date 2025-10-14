@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <link rel="stylesheet" type="text/css" href="/style.css">
+    <title>Nueva reserva Solai</title>
+</head>
+
+<body>
+    <div
+        style="height: 100% !important;padding-top: 15%;position: fixed;width: 100%; background: url(http://localhost:4000/resources/descarga.svg) fixed; background-size: cover; text-align: center; height: 300px;">
+        <h1 style="font-family: system-ui;font-size: 24px;">Te enviamos los datos de la reserva, {{name}}</h1>
+        <h2>Reserva nº: {{reserva}}</h2>
+        <br>
+        <p style="font-family: system-ui; font-size: 18px;">Han realizado una reserva en tu estudio, {{estudio}}.</p>
+        <h2 style="font-family: system-ui;font-size: 22px;">¡Por favor acepta la reserva! </h2>
+        <br>
+        <p style="font-family: system-ui;">Acepta la reserva desde el siguiente enlace o entrando en la aplicación en la sección de Reservas.</p>
+        <a href="{{url}}" style="text-decoration: none;padding: 10px;border: 2px rgb(26, 183, 92) solid;border-radius: 10px;color: white;background-color: rgb(21, 149, 74);width: 100px;display: inline-block;">Aceptar</a>
+    </div>
+</body>
+
+</html>

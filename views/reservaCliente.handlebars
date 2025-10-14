@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <link rel="stylesheet" type="text/css" href="/style.css">
+    <title>Bienvenido a Solai</title>
+</head>
+
+<body>
+    <div
+        style="height: 100% !important;padding-top: 15%;position: fixed;width: 100%; background: url(http://localhost:4000/resources/descarga.svg) fixed; background-size: cover; text-align: center; height: 300px;">
+        <h1 style="font-family: system-ui;font-size: 24px;">Te enviamos los datos de tu reserva, {{name}}</h1>
+        <h2>Reserva nº: {{reserva}}</h2>
+        <div class="row" style="  display: table; clear: both;">
+            <div class="column" style="background-color:#aaa;">
+                <h2>Precio:</h2>
+                <h2>Impuestos y gestión:</h2>
+                <h2>TOTAL:</h2>
+            </div>
+            <div class="column" style="background-color:#bbb;">
+                <p>{{precio}}</p>
+                <p>{{iva}}</p>
+                <p>{{total}}</p>
+            </div>
+        </div>
+        <p style="font-family: system-ui; font-size: 18px;">Podrás ver el cargo realizado en tu tarjeta o cuenta
+            bancaria. Aconsejamos comprobar que todo es correcto. Nosotros también nos equivocamos.</p>
+        <h2 style="font-family: system-ui;font-size: 22px;">¡Por favor verifica tu reserva! </h2>
+        <p style="font-family: system-ui;">Verifica todos los datos de tu reserva desde el siguiente enlace.</p>
+        <a href="{{url}}"
+            style="text-decoration: none;padding: 10px;border: 2px rgb(26, 183, 92) solid;border-radius: 10px;color: white;background-color: rgb(21, 149, 74);width: 100px;display: inline-block;">Verificar</a>
+    </div>
+</body>
+
+</html>
