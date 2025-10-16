@@ -60,6 +60,8 @@ db.init = async function init() {
 
   db.Usuario.hasMany(db.Consultoria, { foreignKey: 'usuario_id', onDelete: 'CASCADE' });
   db.Consultoria.belongsTo(db.Usuario, { foreignKey: 'usuario_id', as: 'usuario' });
+  db.Leads.hasMany(db.Consultoria, { foreignKey: 'lead_id' });
+  db.Consultoria.belongsTo(db.Leads, { foreignKey: 'lead_id', as: 'leads' });
 
   // 5) Sync
   await sequelize.sync();

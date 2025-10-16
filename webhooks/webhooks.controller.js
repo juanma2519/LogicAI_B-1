@@ -144,7 +144,7 @@ async function handleWebhookType(req, res, next) {
 
 async function puppeter(req, res, next) {
   try {
-    const result = await webhookService.puppeter(req.body.url, req.body.usuario_id);
+    const result = await webhookService.puppeter(req.body.url, req.body.usuario_id, req.body.lead_id);
     res.json(result);
   } catch (error) {
     console.error('Error en textToSubtitle:', error);

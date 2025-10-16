@@ -122,10 +122,11 @@ async function deleteWebhook(id) {
   await webhook.destroy();
 }
 
-async function puppeter(url, usuario_id) {
+async function puppeter(url, usuario_id, lead_id) {
 
   // 1) crear auditoría pendiente
   const audit = await db.Consultoria.create({
+    lead_id,
     usuario_id,
     url,
     dominio: getDominio(url),
