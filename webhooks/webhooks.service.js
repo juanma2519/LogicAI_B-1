@@ -9,7 +9,7 @@ const ImageToVideoUrl = "https://n8n.srv975799.hstgr.cloud/webhook/925ebf84-1277
 const textToSubtitleUrl = "https://tu-servidor-n8n/webhook/prueba";
 const textToMusicUrl = "https://tu-servidor-n8n/webhook/prueba";
 const textToCarruselUrl = "https://tu-servidor-n8n/webhook/prueba";
-const urlSeo = "https://n8n.srv975799.hstgr.cloud/webhook/8efaf68c-8afd-4d77-8d29-749ace5fe5d5";
+const urlSeo = "https://n8n.srv975799.hstgr.cloud/webhook/3131bc81-b9fc-44e5-8ed3-89259f14625d";
 parser = new xml2js.Parser(
   {
     trim: true,
