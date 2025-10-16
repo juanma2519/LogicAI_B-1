@@ -16,6 +16,7 @@ module.exports = router;
 async function sendTest(req, res, next) {
   try {
     const { usuario_id, to, message, lead_id, consultoria_id } = req.body;
+    console.log("entro");
     if (!usuario_id) return res.status(400).json({ error: 'usuario_id es requerido' });
 
     const result = await whatsappService.sendViaN8n({

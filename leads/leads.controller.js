@@ -51,7 +51,7 @@ function deleteLead(req, res, next) {
 
 function generateLeads(req, res, next) {
   const generation = req.body;
-  generation.usuario_id = req.params.usuario_id;
+  generation.usuario_id = req.params.userId;
   leadService.generateLeads(generation)
     .then(createdLead => res.json(createdLead))
     .catch(next);

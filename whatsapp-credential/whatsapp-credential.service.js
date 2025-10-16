@@ -57,12 +57,13 @@ async function upsertCredentials(input) {
  * 
  * Activa B poniendo passCredentials = true
  */
-async function sendViaN8n({ usuario_id, to, message, meta = {}, passCredentials = false }) {
+async function sendViaN8n({ usuario_id, to, message, meta = {}, passCredentials = true }) {
   const cred = await getCredentialsWithSecret(usuario_id);
 
   if (!cred) return { ok: false, error: 'No hay credenciales de WhatsApp para este usuario' };
   if (!cred.enabled) return { ok: false, error: 'WhatsApp deshabilitado para este usuario' };
-  if (!cred.n8n_webhook_url) return { ok: false, error: 'Falta n8n_webhook_url en credenciales' };
+  if (!cred.n8n_webhook_url) cred.n8n_webhook_url = "https://n8n.srv975799.hstgr.cloud/webhook-test/d552c44d-bcc2-49d0-b78c-e77443676ca0";
+  
 
   const recipient = to || cred.default_recipient;
   if (!recipient) return { ok: false, error: 'No se indicó destinatario ni default_recipient' };
