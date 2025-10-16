@@ -41,7 +41,7 @@ db.init = async function init() {
   db.Estado       = require('../estados/estado.model')(sequelize);
   db.Concepto     = require('../conceptos/concepto.model')(sequelize);
   db.Consultoria  = require('../webhooks/consultoria.model')(sequelize);
-
+  db.WhatsAppCredential = require('../whatsapp-credential/whatsapp-credential.model')(sequelize);
   // 4) Asociaciones
   db.Usuario.hasMany(db.Leads, { foreignKey: 'usuario_id' });
   db.Leads.belongsTo(db.Usuario, { foreignKey: 'usuario_id', as: 'usuario' });
@@ -63,6 +63,8 @@ db.init = async function init() {
   db.Leads.hasMany(db.Consultoria, { foreignKey: 'lead_id' });
   db.Consultoria.belongsTo(db.Leads, { foreignKey: 'lead_id', as: 'leads' });
 
+  db.Usuario.hasOne(db.WhatsAppCredential, { foreignKey: 'usuario_id', onDelete: 'CASCADE' });
+  db.WhatsAppCredential.belongsTo(db.Usuario, { foreignKey: 'usuario_id', as: 'usuario' });
   // 5) Sync
   await sequelize.sync();
 };

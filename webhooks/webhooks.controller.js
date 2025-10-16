@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const webhookService = require('./webhooks.service');
+const axios = require('axios');
 
 // routes
 router.get('/user/:usuario_id', getWebhooksByUser);
@@ -16,6 +17,7 @@ router.post('/text-to-carrusel', textToCarrusel);
 router.post('/demos/:type', handleWebhookType);
 router.post('/puppeter', puppeter);
 router.get('/puppeter/:usuario_id', getScrapsByUser);
+router.post('/consultorias/:id/enviar-whatsapp/:userId', enviarWhatsapp);
 
 module.exports = router;
 
@@ -157,4 +159,15 @@ function getScrapsByUser(req, res, next) {
   webhookService.getScrapsByUser(usuario_id)
     .then(scraps => res.json(scraps))
     .catch(next);
+}
+
+async function enviarWhatsapp(req, res, next) {
+  try {
+    const id = Number(req.params.id);
+    const { to, messageOverride } = req.body || {};
+    const usuario_id = req.params.userId;
+
+    const result = await webhookService.enviarWhatsapp(id, usuario_id, { to, messageOverride });
+    res.json(result);
+  } catch (err) { next(err); }
 }
