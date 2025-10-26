@@ -5,18 +5,16 @@ module.exports = model;
 function model(sequelize) {
   const attributes = {
     id: { type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true },
-
-    usuario_id: { type: DataTypes.INTEGER, allowNull: true },
+    usuario_id: { type: DataTypes.INTEGER, allowNull: false },
     lead_id: { type: DataTypes.INTEGER, allowNull: true },
-    consultoria_id: { type: DataTypes.INTEGER, allowNull: true },
+    consultoria_id: { type: DataTypes.INTEGER, allowNull: false },
 
     email_numero: {
       type: DataTypes.INTEGER,
       allowNull: false,
-      comment: 'Número de email en la secuencia (1, 2, 3, 4...)'
     },
     estado: {
-      type: DataTypes.ENUM('pendiente','enviado','abierto','click','agendado','perdido'),
+      type: DataTypes.ENUM('pendiente', 'enviado', 'abierto', 'click', 'agendado', 'perdido'),
       allowNull: false,
       defaultValue: 'pendiente'
     },
@@ -30,7 +28,7 @@ function model(sequelize) {
     intento: { type: DataTypes.INTEGER, allowNull: false, defaultValue: 0 },
 
     canal: {
-      type: DataTypes.ENUM('email','whatsapp','sms'),
+      type: DataTypes.ENUM('email', 'whatsapp', 'sms'),
       allowNull: false,
       defaultValue: 'email'
     },
@@ -46,8 +44,15 @@ function model(sequelize) {
   };
 
   const options = {
+    defaultScope: {
+      // exclude hash by default
+      attributes: { exclude: ['hash'] }
+    },
+    scopes: {
+      // include hash with this scope
+      withHash: { attributes: {}, }
+    },
     timestamps: false,
-    tableName: 'EmailMarketing'
   };
 
   return sequelize.define('EmailMarketing', attributes, options);

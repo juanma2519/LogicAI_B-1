@@ -4,12 +4,7 @@ module.exports = model;
 
 function model(sequelize) {
     const attributes = {
-        id: {
-            type: DataTypes.BIGINT.UNSIGNED,
-            allowNull: false,
-            primaryKey: true,
-            autoIncrement: true
-        },
+        id: { type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true },
 
         lead_id: { type: DataTypes.INTEGER, allowNull: true },
         // claves de negocio

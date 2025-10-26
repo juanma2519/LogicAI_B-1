@@ -73,10 +73,12 @@ db.init = async function init() {
   
   db.Usuario.hasMany(db.EmailMarketing, { foreignKey: 'usuario_id', onDelete: 'CASCADE' });
   db.EmailMarketing.belongsTo(db.Usuario, { foreignKey: 'usuario_id', as: 'usuario' });
-  db.Leads.hasMany(db.EmailMarketing, { foreignKey: 'lead_id', onDelete: 'CASCADE' });
-  db.EmailMarketing.belongsTo(db.Leads, { foreignKey: 'lead_id', as: 'lead' });
-  db.Consultoria.hasMany(db.EmailMarketing, { foreignKey: 'consultoria_id', onDelete: 'CASCADE' });
-  db.EmailMarketing.belongsTo(db.Consultoria, { foreignKey: 'consultoria_id', as: 'consultoria' });
+  
+  db.Leads.hasOne(db.EmailMarketing, { foreignKey: 'lead_id'});
+  db.EmailMarketing.belongsTo(db.Leads, { foreignKey: 'lead_id', as: 'leads' });
+
+  db.Consultoria.hasOne(db.EmailMarketing, { foreignKey: 'consultoria_id'});
+  db.EmailMarketing.belongsTo(db.Consultoria, { foreignKey: 'consultoria_id', as: 'Consultoria' });
     
   // 5) Sync
   await sequelize.sync();
