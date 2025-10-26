@@ -17,6 +17,7 @@ router.post('/text-to-carrusel', textToCarrusel);
 router.post('/demos/:type', handleWebhookType);
 router.post('/puppeter', puppeter);
 router.get('/puppeter/:usuario_id', getScrapsByUser);
+router.get('/puppeter/consultoria/:consultoria_id', getScrapById);
 router.post('/consultorias/:id/enviar-whatsapp/:userId', enviarWhatsapp);
 
 module.exports = router;
@@ -157,6 +158,13 @@ async function puppeter(req, res, next) {
 function getScrapsByUser(req, res, next) {
   const usuario_id = req.params.usuario_id;
   webhookService.getScrapsByUser(usuario_id)
+    .then(scraps => res.json(scraps))
+    .catch(next);
+}
+
+function getScrapById(req, res, next) {
+  const consultoria_id = req.params.consultoria_id;
+  webhookService.getScrapById(consultoria_id)
     .then(scraps => res.json(scraps))
     .catch(next);
 }

@@ -9,8 +9,12 @@ function model(sequelize) {
     lead_id: { type: DataTypes.INTEGER, allowNull: true },
     consultoria_id: { type: DataTypes.INTEGER, allowNull: false },
 
-    email_numero: {
+    numero: {
       type: DataTypes.INTEGER,
+      allowNull: false,
+    },
+    email: {
+      type: DataTypes.STRING,
       allowNull: false,
     },
     estado: {
@@ -20,7 +24,7 @@ function model(sequelize) {
     },
 
     fecha_programada: { type: DataTypes.DATE, allowNull: true },
-    fecha_envio: { type: DataTypes.DATE, allowNull: true },
+    fecha_envio: { type: DataTypes.DATE, allowNull: true, defaultValue: DataTypes.NOW },
     fecha_apertura: { type: DataTypes.DATE, allowNull: true },
     fecha_click: { type: DataTypes.DATE, allowNull: true },
     fecha_agendado: { type: DataTypes.DATE, allowNull: true },

@@ -30,7 +30,8 @@ module.exports = {
   textToCarrusel,
   puppeter,
   getScrapsByUser,
-  enviarWhatsapp
+  enviarWhatsapp,
+  getScrapById
 };
 
 async function getWebhooksByUsuarioId(usuario_id) {
@@ -166,6 +167,14 @@ async function getScrapsByUser(usuario_id) {
 
   const scraps = await db.Consultoria.findAll({ where: { usuario_id: usuario_id } });
   return scraps;
+
+}
+
+
+async function getScrapById(consultoria_id) {
+
+  const scrap = await db.Consultoria.findByPk(consultoria_id);
+  return scrap;
 
 }
 
