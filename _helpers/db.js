@@ -42,6 +42,10 @@ db.init = async function init() {
   db.Concepto     = require('../conceptos/concepto.model')(sequelize);
   db.Consultoria  = require('../webhooks/consultoria.model')(sequelize);
   db.WhatsAppCredential = require('../whatsapp-credential/whatsapp-credential.model')(sequelize);
+  db.EmailMarketing = require('../whatsapp-credential/whatsapp-credential.model')(sequelize);
+  
+  
+  
   // 4) Asociaciones
   db.Usuario.hasMany(db.Leads, { foreignKey: 'usuario_id' });
   db.Leads.belongsTo(db.Usuario, { foreignKey: 'usuario_id', as: 'usuario' });
@@ -65,6 +69,15 @@ db.init = async function init() {
 
   db.Usuario.hasOne(db.WhatsAppCredential, { foreignKey: 'usuario_id', onDelete: 'CASCADE' });
   db.WhatsAppCredential.belongsTo(db.Usuario, { foreignKey: 'usuario_id', as: 'usuario' });
+  
+  
+  db.Usuario.hasMany(db.EmailMarketing, { foreignKey: 'usuario_id', onDelete: 'CASCADE' });
+  db.EmailMarketing.belongsTo(db.Usuario, { foreignKey: 'usuario_id', as: 'usuario' });
+  db.Leads.hasMany(db.EmailMarketing, { foreignKey: 'lead_id', onDelete: 'CASCADE' });
+  db.EmailMarketing.belongsTo(db.Leads, { foreignKey: 'lead_id', as: 'lead' });
+  db.Consultoria.hasMany(db.EmailMarketing, { foreignKey: 'consultoria_id', onDelete: 'CASCADE' });
+  db.EmailMarketing.belongsTo(db.Consultoria, { foreignKey: 'consultoria_id', as: 'consultoria' });
+    
   // 5) Sync
   await sequelize.sync();
 };

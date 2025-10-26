@@ -36,6 +36,7 @@ const db = require('./_helpers/db');
     app.use('/conceptos', require('./conceptos/conceptos.controller'));
     app.use('/estados', require('./estados/estados.controller'));
     app.use('/whatsapp', require('./whatsapp-credential/whatsapp-credential.controller'));
+    app.use('/emailmarketing', require('./email/email.controller'));
     // 4️⃣ Recursos estáticos y middleware de errores
     app.use('/resources', express.static('resources'));
     app.use(errorHandler);
