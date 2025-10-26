@@ -42,7 +42,7 @@ db.init = async function init() {
   db.Concepto     = require('../conceptos/concepto.model')(sequelize);
   db.Consultoria  = require('../webhooks/consultoria.model')(sequelize);
   db.WhatsAppCredential = require('../whatsapp-credential/whatsapp-credential.model')(sequelize);
-  db.EmailMarketing = require('../whatsapp-credential/whatsapp-credential.model')(sequelize);
+  db.EmailMarketing = require('../email/email.model')(sequelize);
   
   
   
