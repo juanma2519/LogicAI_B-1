@@ -18,7 +18,7 @@ const db = require('./_helpers/db');
     app.use(bodyParser.json({ limit: '50mb', type: 'application/json' }));
 
     const corsOptions = {
-      origin: ['https://dsol.vercel.app', 'http://localhost:4200', 'https://app.wesolai.com'],
+      origin: ['https://dsol.vercel.app', 'http://localhost:4200', 'https://app.wesolai.com', 'https://app.logicai.es'],
       credentials: true
     };
     app.use(cors(corsOptions));
@@ -35,7 +35,8 @@ const db = require('./_helpers/db');
     app.use('/eleven', require('./elevenlabs/elevenlabs.controller'));
     app.use('/conceptos', require('./conceptos/conceptos.controller'));
     app.use('/estados', require('./estados/estados.controller'));
-
+    app.use('/whatsapp', require('./whatsapp-credential/whatsapp-credential.controller'));
+    app.use('/emailmarketing', require('./email/email.controller'));
     // 4️⃣ Recursos estáticos y middleware de errores
     app.use('/resources', express.static('resources'));
     app.use(errorHandler);

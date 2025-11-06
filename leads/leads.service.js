@@ -19,7 +19,7 @@ module.exports = {
     generateLeads
 };
 
-const textToImageUrl = "https://n8n.srv975799.hstgr.cloud/webhook-test/8efaf68c-8afd-4d77-8d29-749ace5fe5d5";
+const textToImageUrl = "https://n8n.srv975799.hstgr.cloud/webhook/8efaf68c-8afd-4d77-8d29-749ace5fe5d5";
 
 async function getLeadsByUsuarioId(userId) {
   const leads = await db.Leads.findAll({ where: { usuario_id: userId } });

@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const webhookService = require('./webhooks.service');
+const axios = require('axios');
 
 // routes
 router.get('/user/:usuario_id', getWebhooksByUser);
@@ -16,6 +17,8 @@ router.post('/text-to-carrusel', textToCarrusel);
 router.post('/demos/:type', handleWebhookType);
 router.post('/puppeter', puppeter);
 router.get('/puppeter/:usuario_id', getScrapsByUser);
+router.get('/puppeter/consultoria/:consultoria_id', getScrapById);
+router.post('/consultorias/:id/enviar-whatsapp/:userId', enviarWhatsapp);
 
 module.exports = router;
 
@@ -144,7 +147,7 @@ async function handleWebhookType(req, res, next) {
 
 async function puppeter(req, res, next) {
   try {
-    const result = await webhookService.puppeter(req.body.url, req.body.usuario_id);
+    const result = await webhookService.puppeter(req.body.url, req.body.usuario_id, req.body.lead_id);
     res.json(result);
   } catch (error) {
     console.error('Error en textToSubtitle:', error);
@@ -157,4 +160,22 @@ function getScrapsByUser(req, res, next) {
   webhookService.getScrapsByUser(usuario_id)
     .then(scraps => res.json(scraps))
     .catch(next);
+}
+
+function getScrapById(req, res, next) {
+  const consultoria_id = req.params.consultoria_id;
+  webhookService.getScrapById(consultoria_id)
+    .then(scraps => res.json(scraps))
+    .catch(next);
+}
+
+async function enviarWhatsapp(req, res, next) {
+  try {
+    const id = Number(req.params.id);
+    const { to, messageOverride } = req.body || {};
+    const usuario_id = req.params.userId;
+
+    const result = await webhookService.enviarWhatsapp(id, usuario_id, { to, messageOverride });
+    res.json(result);
+  } catch (err) { next(err); }
 }
